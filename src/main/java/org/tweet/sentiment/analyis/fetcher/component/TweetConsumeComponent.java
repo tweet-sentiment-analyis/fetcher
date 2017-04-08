@@ -5,12 +5,9 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClient;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.amazonaws.services.sqs.model.CreateQueueRequest;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.amazonaws.services.sqs.model.SendMessageResult;
 import com.google.common.collect.Lists;
@@ -38,7 +35,7 @@ public class TweetConsumeComponent extends Thread {
     private boolean isInterrupted;
 
     private AmazonSQS simpleQueue;
-    private String queueUrl;
+    private String    queueUrl;
 
 
     public TweetConsumeComponent(String term) {
@@ -113,6 +110,7 @@ public class TweetConsumeComponent extends Thread {
                     wrapperObj.put("id", tweetId);
                     wrapperObj.put("timestamp", System.currentTimeMillis() / 1000L);
                     wrapperObj.put("tweet", tweetObj);
+                    wrapperObj.put("term", this.term);
 
                     String str = wrapperObj.toJSONString();
 
