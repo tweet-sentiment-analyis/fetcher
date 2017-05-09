@@ -12,7 +12,8 @@ In order to build this project as well as deploy a new image to docker hub, perf
 * Run `docker push tweetsentimentanalysis/fetcher:0.0.1` to deploy to dockerhub
 
 ## Run the container
-After you have built the container, you may run it using the following command: `docker run -p 8090:8080 -e AWS_ACCESS_KEY_ID='...' -e AWS_SECRET_ACCESS_KEY='...' tweetsentimentanalysis/fetcher:0.0.1` which runs the container and lets you connect to it [http://192.168.99.100:8090](http://192.168.99.100:8090).
+After you have built the container, you may run it using the following command: `docker run -p 8090:8080 -e AWS_ACCESS_KEY_ID='...' -e AWS_SECRET_ACCESS_KEY='...'  -e TWITTER_CONSUMER_KEY='..' -e TWITTER_CONSUMER_SECRET='...' -e TWITTER_TOKEN='...' -e TWITTER_TOKEN_SECRET='...' tweetsentimentanalysis/fetcher:0.0.1` which runs the container and lets you connect to it [http://192.168.99.100:8090](http://192.168.99.100:8090).
+Use the appropriate credentials for this.
 
 ## Remove built images
 In order to clean up, you may want to remove the previously created image and container:

@@ -30,6 +30,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class TweetConsumeComponent extends Thread {
 
+    public static final String TWITTER_CONSUMER_KEY = "TWITTER_CONSUMER_KEY";
+    public static final String TWITTER_CONSUMER_SECRET = "TWITTER_CONSUMER_SECRET";
+    public static final String TWITTER_TOKEN = "TWITTER_TOKEN";
+    public static final String TWITTER_TOKEN_SECRET = "TWITTER_TOKEN_SECRET";
+
     private String term;
 
     private boolean isInterrupted;
@@ -81,8 +86,13 @@ public class TweetConsumeComponent extends Thread {
             List<String> terms = Lists.newArrayList(this.term);
             hosebirdEndpoint.trackTerms(terms);
 
-            // These secrets should be read from a config file
-            Authentication hosebirdAuth = new OAuth1("OqJqW85qsdLeahgZ8TRSciCk1", "J3vYnVcdC4beNeaGpY7p2KUjZDpXaa4JMQ5XiWsz3td5NPcTAb", "3467421496-hRoikICJapjithg2r2zpKRNeYQK32FjWVnoB4ta", "TLvUJ1NG00ph1uu6yA45V012CwAR1yZp5pj79xoRv7azL");
+            // read secrets from environment variable
+            String consumerKey = System.getenv(TWITTER_CONSUMER_KEY);
+            String consumerSecret = System.getenv(TWITTER_CONSUMER_SECRET);
+            String token = System.getenv(TWITTER_TOKEN);
+            String tokenSecret = System.getenv(TWITTER_TOKEN_SECRET);
+
+            Authentication hosebirdAuth = new OAuth1(consumerKey, consumerSecret, token, tokenSecret);
 
             ClientBuilder builder = new ClientBuilder()
                     .name("Hosebird-Client-01") // optional: mainly for the logs
