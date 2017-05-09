@@ -4,7 +4,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
@@ -53,12 +53,12 @@ public class TweetConsumeComponent extends Thread {
          */
         AWSCredentials credentials = null;
         try {
-            credentials = new ProfileCredentialsProvider("sqs").getCredentials();
+            credentials = new EnvironmentVariableCredentialsProvider().getCredentials();
         } catch (Exception e) {
             throw new AmazonClientException(
-                    "Cannot load the credentials from the credential profiles file. " +
-                            "Please make sure that your credentials file is at the correct " +
-                            "location (~/.aws/credentials), and is in valid format.",
+                    "Cannot load the credentials from the environment. " +
+                            "Please make sure that your credentials are located in the environment variables " +
+                            "AWS_ACCESS_KEY_ID resp. AWS_SECRET_ACCESS_KEY",
                     e);
         }
 
