@@ -13,7 +13,7 @@ public class RegistrationService {
     private TweetConsumeComponent consumeComponent;
 
     public RegistrationService() {
-        this.executorService = Executors.newSingleThreadExecutor();
+        this.executorService = Executors.newFixedThreadPool(1);
     }
 
     public void consumeTweets(String term) {
