@@ -2,6 +2,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 out/
 
+twitter-credentials.txt
+
 ### STS ###
 .apt_generated
 .classpath
