@@ -16,12 +16,14 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/terms", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void consumeTerm(@RequestBody Term term) {
         this.registrationService.consumeTweets(term.getIdentifier());
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/terms/stop", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void stopConsuming() {
