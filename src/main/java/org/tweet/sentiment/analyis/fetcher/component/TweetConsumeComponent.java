@@ -108,7 +108,7 @@ public class TweetConsumeComponent extends Thread {
 
                     JSONObject wrapperObj = new JSONObject();
                     wrapperObj.put("id", tweetId);
-                    wrapperObj.put("timestamp", System.currentTimeMillis() / 1000L);
+                    wrapperObj.put("timestamp", System.currentTimeMillis());
                     wrapperObj.put("tweet", tweetObj);
                     wrapperObj.put("term", this.term);
 
