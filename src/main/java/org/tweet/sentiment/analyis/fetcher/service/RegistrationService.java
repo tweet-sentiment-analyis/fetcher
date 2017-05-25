@@ -25,6 +25,11 @@ public class RegistrationService {
     }
 
     public void consumeTweets(String term) {
+        if (this.registeredTerms.containsKey(term)) {
+            logger.info("Term '" + term + "' is already registered");
+            return;
+        }
+        
         logger.info("Starting to consume tweets for term " + term);
         TweetConsumeComponent consumeComponent = new TweetConsumeComponent(term);
         this.registeredTerms.put(term, consumeComponent);
